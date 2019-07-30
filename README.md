@@ -1,6 +1,6 @@
 # React.js
 ![Generic badge](https://badgen.net/badge/SPA/React.js/blue) ![Generic badge](https://badgen.net/badge/sass/modules/blue) ![Generic badge](https://badgen.net/badge/Serverless/Firebase/yellow) ![Generic badge](https://badgen.net/badge/state-management/Redux/purple) 
-![Generic badge](https://badgen.net/badge/reusable-code/'100%'/blue) ![Generic badge](https://badgen.net/badge/spaghetti-code/nope/) ![Generic badge](https://badgen.net/badge/style/styled-components/orange)
+![Generic badge](https://badgen.net/badge/reusable-code/100/blue) ![Generic badge](https://badgen.net/badge/spaghetti-code/nope/) ![Generic badge](https://badgen.net/badge/style/styled-components/orange)
 
 You can see the full features on [Live Demo](https://reactjsapp-7dab3.web.app)
 
