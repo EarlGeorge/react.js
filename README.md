@@ -3,7 +3,11 @@
 ![Generic badge](https://badgen.net/badge/reusable-code/100/blue) ![Generic badge](https://badgen.net/badge/spaghetti-code/nope/) ![Generic badge](https://badgen.net/badge/style/styled-components/orange) ![Generic badge](https://badgen.net/badge/Paradigm/functional-programming/)
 
 You can see the full features on [Live Demo](https://reactjsapp-7dab3.web.app)
-
+```
+U can use this account, or make your own.
+email: george@georgee.co.uk
+password: admin1234
+```
 ---
 ## Getting started:
 
