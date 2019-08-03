@@ -1,0 +1,126 @@
+import React, { useState, useEffect } from 'react'
+import { Redirect } from 'react-router-dom'
+import axios from 'axios'
+import { useSelector } from 'react-redux'
+import styled, { css } from 'styled-components'
+
+// Components
+import SearchBar from '../components/SearchBar'
+import GalleryCard from '../components/GalleryCard'
+
+const sizes = {
+  desktop: 992,
+  tablet: 768,
+  phone: 576,
+}
+const media = Object.keys(sizes).reduce((acc, label) => {
+  acc[label] = (...args) => css`
+    @media (max-width: ${sizes[label] / 16}em) {
+      ${css(...args)}
+    }
+  `
+  return acc
+}, {})
+
+const TopS = styled.div`
+  position: relative;
+  top: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  /* Phone device */
+  ${media.phone`font-size: 12px;`}
+`
+const GalleryGrid = styled.section`
+  position: relative;
+  width: 100%;
+  margin: 180px 0px;
+  display: grid;
+  grid-gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(370px, 0fr));
+  grid-auto-rows: 600px;
+  align-content: center;
+  justify-content: center;
+  /* Phone device */
+  ${media.phone`grid-template-columns: repeat(auto-fit, minmax(150px, 0fr)); grid-auto-rows: 400px;`}
+`
+
+const SearchPage = () => {
+  const [value, setValue] = useState('');
+  const [images, setImages] = useState([]);
+
+  // Replace with your own client_id
+  const endPoint = `https://api.unsplash.com/search/photos?query=${value}&per_page=100&client_id=********************************************`
+ 
+  useEffect(() => {
+    axios.get(endPoint)
+    .then(res => setImages( res.data.results ))
+    .catch(err => console.log(err))
+    speech()
+
+    // return () => speech()
+  }, [value]) 
+
+  //  typing Input 
+  const onTextChange = (e) => setValue(e.target.value);
+
+  //  speech Input 
+  const speech = () => {
+    if (value.length == false) {
+      
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      if(!SpeechRecognition) {
+        console.error('This browser does not support the Web-Speech-API');
+        return false;
+      }
+
+      let recognition = new SpeechRecognition();
+      recognition.interimResults = true;
+      recognition.lang = 'en-US';
+      
+      recognition.addEventListener('result', (e) => {
+        
+        let transcript = [...e.results]
+        .map(result => result[0].transcript)
+        .join('')
+        setValue(transcript)
+        console.log(e.results)
+      })
+
+      recognition.addEventListener('end', recognition.start)
+      recognition.start()
+    }
+    else {
+     return
+    }
+  }
+
+
+  const auth = useSelector(state => state.firebase.auth)
+  if (!auth.uid) return <Redirect to='/auth' /> 
+  
+  return (
+    <>
+      <TopS>
+        <SearchBar fireChange={onTextChange} searching={value}  />
+      </TopS>
+      <GalleryGrid>
+        {images.map(( img ) => (
+            <GalleryCard
+              key={img.id}
+              name={img.alt_description || img.description}
+              img={img.urls.regular}
+              userInfo={img.user.name}
+              userPic={img.user.profile_image.medium}
+            />
+          ))}
+      </GalleryGrid>
+    </>
+  )
+}
+
+export default SearchPage
+
