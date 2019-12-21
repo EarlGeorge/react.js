@@ -51,8 +51,7 @@ const SearchPage = () => {
   const [value, setValue] = useState('');
   const [images, setImages] = useState([]);
 
-  // Replace with your own client_id
-  const endPoint = `https://api.unsplash.com/search/photos?query=${value}&per_page=100&client_id=********************************************`
+  const endPoint = `https://api.unsplash.com/search/photos?query=${value}&per_page=100&client_id=${process.env.REACT_APP_UNSPLASH_CLIENTID}`
  
   useEffect(() => {
     axios.get(endPoint)

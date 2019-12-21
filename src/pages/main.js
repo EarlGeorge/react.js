@@ -61,8 +61,7 @@ const MainPage = () => {
   const [url, setUrl] = useState([])
   const random = Math.floor(Math.random() * 7)
 
-  // Replace with your own client_id
-  const endPoint = `https://api.unsplash.com/photos?page=${random}&per_page=30&order_by=latest&client_id=************************************`
+  const endPoint = `https://api.unsplash.com/photos?page=${random}&per_page=30&order_by=latest&client_id=${process.env.REACT_APP_UNSPLASH_CLIENTID}`
   
   useEffect(() => {
     fetch(endPoint)
