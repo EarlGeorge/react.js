@@ -1,4 +1,7 @@
-.footer {
+import styled from 'styled-components'
+
+// wrapping Footer style :)
+const Footer = styled.footer`
     position: relative;
     left: 0;
     bottom: 0;
@@ -72,4 +75,6 @@
        justify-content: center;
        align-items: center;
     }
-}
+
+`
+export {Footer}

@@ -1,15 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import style from './footer.module.scss'
+import { Footer } from './style'
 
 // import bg from '../../images/background.svg'
 
 const footer = () => {
   return (
-    <footer className={style.footer}>
-      {/* <img src={bg} className={style.background} /> */}
-      <div className={style.menu}>
+    <Footer>
+      {/* <img src={bg} className='background' /> */}
+      <div className='menu'>
         <div>
           <h1>About</h1>
           <ul>
@@ -33,10 +33,10 @@ const footer = () => {
           </ul>
         </div>
       </div>
-      <div className={style.copyright}>
+      <div className='copyright'>
         Copyright © {new Date().getFullYear()} All rights reserved.
       </div>
-    </footer>
+    </Footer>
   )
 }
 
