@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import style from './search.module.scss'
+import { SearchBar } from './style'
 import icon from '../../images/search.svg'
 
+//  SearchBar input + typewriter effect for input placeholder
 export default class index extends Component {
   state = {
     info: false,
@@ -14,10 +15,9 @@ export default class index extends Component {
   }
 
   handleOpen = () => {
-  
+
     const typing = () => {
-      const { loopNum, text, typingSpeed } = this.state
-      const { dataText } = this.state
+      const { loopNum, text, typingSpeed, dataText } = this.state
       // Current index of word  // LoopNum = 0
       const i = loopNum % dataText.length
       // Get full text of current word
@@ -32,7 +32,7 @@ export default class index extends Component {
       })
 
       // make sound for typed text
-      if (text === '' ) {
+      if (text === '') {
         const msg = new SpeechSynthesisUtterance()
         msg.text = 'What are you looking for?'
         speechSynthesis.speak(msg)
@@ -43,20 +43,17 @@ export default class index extends Component {
   }
 
   span = () => {
-    if (this.state.info === false) {
-      this.setState(prevState => {
-        return { info: !prevState.info }
-      })
-    } else {
-      this.setState({ info: false })
-    }
+    this.setState(prevState => {
+      return { info: !prevState.info }
+    })
   }
 
   render() {
-    const span = this.state.info ? `${style.span_active}` : `${style.span}`
+    const { searching, fireChange } = this.props
+    const span = this.state.info ? `span_active` : `span`
 
     return (
-      <div className={style.search}>
+      <SearchBar>
         <img
           src={icon}
           alt="search button"
@@ -64,17 +61,17 @@ export default class index extends Component {
         />
         <input
           type="text"
-          className={style.active}
+          className="active"
           placeholder={this.state.text}
-          onChange={this.props.searching}
+          onChange={searching}
           onKeyDown={this.span}
           name="searchText"
           onFocus={this.handleOpen}
-          onChange={this.props.fireChange}
-          value={this.props.searching}
+          onChange={fireChange}
+          value={searching}
         />
         <span className={span}>Search result</span>
-      </div>
+      </SearchBar>
     )
   }
 }

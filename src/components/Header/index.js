@@ -2,10 +2,14 @@ import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
+// styling
+import { Header } from './style'
+
+// user navbar
 import SignedInLinks from './SignedInLinks'
 import SignedOutLinks from './SignedOutLinks'
 
-import style from './header.module.scss'
+// logo icon
 import logo from '../../images/react-icon.svg'
 
 const Index = () => {
@@ -14,43 +18,40 @@ const Index = () => {
   const handleOpen = () => {
     setActive(!active)
     // not the best way to use ID in react but now it's ok.
-    document.getElementById('changesize').classList.toggle(`${style.children}`)
+    // on toggle hamburger button applies transition for "Layout Component's <main> element"
+    document.getElementById('changesize').classList.toggle(`children`)
   }
- 
- 
-  // active button-X OR initial hamburger
-  const hamburger = active
-  ? `${style.hamburger} ${style.hamburgerActive}`
-  : `${style.hamburger}`
-  // overlay 'navbar + before transition' OR initial navbar style
-  const navbar = active
-    ? `${style.overlayActive} ${style.overlay}`
-    : `${style.initialNav}`
 
+  // small screen
+  // active button-X OR initial hamburger
+  const hamburger = active ? `hamburger hamburgerActive` : `hamburger`
+  // overlay 'navbar + before transition' OR initial navbar style
+  const navbar = active ? `overlayActive overlay` : `initialNav`
+  
+  // Redux Firebase User auth
   const auth = useSelector(state => state.firebase.auth)
   const profile = useSelector(state => state.firebase.profile)
-
+  // NavBar User in-out Links
   const links = auth.uid ? <SignedInLinks profile={profile} auth={auth} /> : <SignedOutLinks />;
- 
+
   return (
-    <header className={style.header} id='navv'>
-        <div className={style.container}>
-          <NavLink to="/">
-            <img src={logo} alt="Logo" className={style.logo} />
-          </NavLink>
+    <Header>
+      <div className="container">
+        <NavLink to="/">
+          <img src={logo} alt="Logo" className="logo" />
+        </NavLink>
 
-          <div className={hamburger} onClick={handleOpen}>
-            <div />
-            <div />
-            <div />
-          </div>
-
-          <nav className={navbar}>
-            {links}
-          </nav>
-          
+        <div className={hamburger} onClick={handleOpen}>
+          <div />
+          <div />
+          <div />
         </div>
-      </header>
+
+        <nav className={navbar}>
+          {links}
+        </nav>
+      </div>
+    </Header>
   )
 }
 

@@ -1,5 +1,7 @@
-.search {
-    
+import styled from 'styled-components'
+
+const SearchBar = styled.div`
+ 
     &:before {
         content: "";
         border-radius: 10%;
@@ -58,7 +60,7 @@
         cursor: text;
         padding-left: 60px;
         width: 80%;
-     
+    
         &::placeholder {
             padding: 0 3px;
             color: rgb(38, 55, 73);
@@ -82,14 +84,16 @@
             opacity: 1
         }
     }
-}
+    
+    @keyframes grow {
+        from {
+            transform: scale(0.1);
+        }
+        to {
+            transform: scale(1.5);
+            opacity: 0
+        }
+    }
+`
+export { SearchBar }
 
-@keyframes grow {
-    from {
-        transform: scale(0.1);
-    }
-    to {
-        transform: scale(1.5);
-        opacity: 0
-    }
-}

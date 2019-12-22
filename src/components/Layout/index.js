@@ -3,7 +3,8 @@ import Helmet from 'react-helmet'
 import { Scrollbars } from 'react-custom-scrollbars'
 import PropTypes from 'prop-types'
 
-import style from './layout.module.scss'
+// styled-components 
+import { GlobalStyle } from './style'
 
 // Components
 import Header from '../Header'
@@ -11,9 +12,10 @@ import Footer from '../Footer'
 
 const Layout = ({ children }) => {
   return (
+    // Styling Custom Scrollbar
     <Scrollbars
       renderThumbVertical={({ style, ...props }) => (
-        <div 
+        <div
           {...props}
           style={{
             ...style,
@@ -27,28 +29,33 @@ const Layout = ({ children }) => {
         />
       )}
     >
-    <div className={style.layout}>
-      <Helmet>
-        <html lang="en" />
-        <title>Images + voice interaction | George / გიორგი</title>
-        <meta
-          name="description"
-          content="unspalsh images"
-        />
-        <meta name="author" content='George Davituri' />
-        <meta name="summary" content="images + voice interaction"></meta>
-        <meta property="url" content="/reactjsapp-7dab3.web.app" />
-      </Helmet>
+      {/* Load global style */}
+      <GlobalStyle />
 
-      <Header />
+      {/* Layout */}
+      <div className='layout'>
+        <Helmet>
+          <html lang="en" />
+          <title>Images + voice interaction | George / გიორგი</title>
+          <meta
+            name="description"
+            content="unspalsh images"
+          />
+          <meta name="author" content='George Davituri' />
+          <meta name="summary" content="images + voice interaction"></meta>
+          <meta property="url" content="/reactjsapp-7dab3.web.app" />
+        </Helmet>
 
-      <div className={style.container} id="changesize">
-        {children}
+        <Header />
+
+        <main className='container' id="changesize">
+          {children}
+        </main>
       </div>
-    </div>
 
-    <Footer />
-  </Scrollbars>
+      {/* sticky footer should be outside of the <main> tag and as well out of .layout class element */}
+      <Footer />
+    </Scrollbars>
   )
 }
 
