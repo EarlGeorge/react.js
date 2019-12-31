@@ -77,5 +77,5 @@ export default class index extends Component {
 }
 
 index.propTypes = {
-  searching: PropTypes.func,
+  searching: PropTypes.string,
 }

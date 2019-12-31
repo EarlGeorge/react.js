@@ -52,15 +52,22 @@ const SearchPage = () => {
   const [images, setImages] = useState([]);
 
   const endPoint = `https://api.unsplash.com/search/photos?query=${value}&per_page=100&client_id=${process.env.REACT_APP_UNSPLASH_CLIENTID}`
- 
-  useEffect(() => {
-    axios.get(endPoint)
-    .then(res => setImages( res.data.results ))
-    .catch(err => console.log(err))
-    speech()
 
-    // return () => speech()
-  }, [value]) 
+  useEffect(() => {
+    const controller = new AbortController()
+    const signal = controller.signal
+
+    axios.get(endPoint, { signal })
+      .then(res => setImages(res.data.results))
+      .catch(err => console.log(err))
+
+    if (!signal.aborted) {
+      speech()
+    }
+    
+    // clean up
+    return () => controller.abort()
+  }, [value])
 
   //  typing Input 
   const onTextChange = (e) => setValue(e.target.value);
@@ -68,10 +75,10 @@ const SearchPage = () => {
   //  speech Input 
   const speech = () => {
     if (value.length == false) {
-      
+
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-      if(!SpeechRecognition) {
+      if (!SpeechRecognition) {
         console.error('This browser does not support the Web-Speech-API');
         return false;
       }
@@ -79,43 +86,40 @@ const SearchPage = () => {
       let recognition = new SpeechRecognition();
       recognition.interimResults = true;
       recognition.lang = 'en-US';
-      
+
       recognition.addEventListener('result', (e) => {
-        
+
         let transcript = [...e.results]
-        .map(result => result[0].transcript)
-        .join('')
+          .map(result => result[0].transcript)
+          .join('')
         setValue(transcript)
         console.log(e.results)
       })
 
-      recognition.addEventListener('end', recognition.start)
+      recognition.addEventListener('end', recognition.end)
       recognition.start()
-    }
-    else {
-     return
     }
   }
 
 
   const auth = useSelector(state => state.firebase.auth)
-  if (!auth.uid) return <Redirect to='/auth' /> 
-  
+  if (!auth.uid) return <Redirect to='/auth' />
+
   return (
     <>
       <TopS>
-        <SearchBar fireChange={onTextChange} searching={value}  />
+        <SearchBar fireChange={onTextChange} searching={value} />
       </TopS>
       <GalleryGrid>
-        {images.map(( img ) => (
-            <GalleryCard
-              key={img.id}
-              name={img.alt_description || img.description}
-              img={img.urls.regular}
-              userInfo={img.user.name}
-              userPic={img.user.profile_image.medium}
-            />
-          ))}
+        {images.map((img) => (
+          <GalleryCard
+            key={img.id}
+            name={img.alt_description || img.description}
+            img={img.urls.regular}
+            userInfo={img.user.name}
+            userPic={img.user.profile_image.medium}
+          />
+        ))}
       </GalleryGrid>
     </>
   )

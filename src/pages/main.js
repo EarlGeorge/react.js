@@ -62,21 +62,28 @@ const MainPage = () => {
   const random = Math.floor(Math.random() * 7)
 
   const endPoint = `https://api.unsplash.com/photos?page=${random}&per_page=30&order_by=latest&client_id=${process.env.REACT_APP_UNSPLASH_CLIENTID}`
-  
+
   useEffect(() => {
-    fetch(endPoint)
-     .then(res => res.json())
-     .then(data => setUrl(data))
-  },[])
- 
+    const controller = new AbortController()
+    const signal = controller.signal
+
+    fetch(endPoint, { signal })
+      .then(res => res.json())
+      .then(data => setUrl(data))
+      .catch(err => console.log(err))
+
+    // clean up
+    return () => controller.abort()
+  }, [])
+
   const auth = useSelector(state => state.firebase.auth)
-  if (auth.uid) return <Redirect to='/search' /> 
+  if (auth.uid) return <Redirect to='/search' />
 
   return (
     <Gallery>
       {url.map((pic) => (
         <Image key={pic.id}>
-          <img src={pic.urls.small} alt="Gallery"/>
+          <img src={pic.urls.small} alt="Gallery" />
         </Image>
       ))}
     </Gallery>
