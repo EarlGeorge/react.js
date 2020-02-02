@@ -2,25 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
+import { breakPoints } from '../components/MediaType'
 
 // Components
 import SearchBar from '../components/SearchBar'
 import GalleryCard from '../components/GalleryCard'
 
-const sizes = {
-  desktop: 992,
-  tablet: 768,
-  phone: 576,
-}
-const media = Object.keys(sizes).reduce((acc, label) => {
-  acc[label] = (...args) => css`
-    @media (max-width: ${sizes[label] / 16}em) {
-      ${css(...args)}
-    }
-  `
-  return acc
-}, {})
 
 const TopS = styled.div`
   position: relative;
@@ -31,7 +19,9 @@ const TopS = styled.div`
   width: 100%;
   height: 100px;
   /* Phone device */
-  ${media.phone`font-size: 12px;`}
+  @media ${breakPoints.phone} {
+    font-size: 12px;
+  }
 `
 const GalleryGrid = styled.section`
   position: relative;
@@ -44,7 +34,10 @@ const GalleryGrid = styled.section`
   align-content: center;
   justify-content: center;
   /* Phone device */
-  ${media.phone`grid-template-columns: repeat(auto-fit, minmax(150px, 0fr)); grid-auto-rows: 400px;`}
+  @media ${breakPoints.phone} {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 0fr)); 
+    grid-auto-rows: 400px;
+  }
 `
 
 const SearchPage = () => {
@@ -64,7 +57,7 @@ const SearchPage = () => {
     if (!signal.aborted) {
       speech()
     }
-    
+
     // clean up
     return () => controller.abort()
   }, [value])
@@ -74,7 +67,7 @@ const SearchPage = () => {
 
   //  speech Input 
   const speech = () => {
-    if (value.length == false) {
+    if (value.length == 0) {
 
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 

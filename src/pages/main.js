@@ -1,24 +1,10 @@
 import React, { useState, useEffect } from "react"
 import { Redirect } from 'react-router-dom'
-import styled, { css, keyframes } from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+import { breakPoints } from '../components/MediaType'
 import { useSelector } from 'react-redux'
 
-
-// this page is without components.. : ))
-
-const sizes = {
-  desktop: 992,
-  tablet: 768,
-  phone: 576,
-}
-const media = Object.keys(sizes).reduce((acc, label) => {
-  acc[label] = (...args) => css`
-    @media (max-width: ${sizes[label] / 16}em) {
-      ${css(...args)}
-    }
-  `
-  return acc
-}, {})
+// this page is without components.. : )) only @media MediaType 
 
 const page = keyframes`
    0% { 
@@ -44,7 +30,12 @@ const Gallery = styled.section`
   background:linear-gradient(145deg, rgba(79, 97, 120,0.7) 70%, #ffffff 100%);
   box-shadow:120px 100px 250px #d9e7ff inset;
   /* Phone device */
-  ${media.phone`  grid-template-columns: repeat(auto-fit, minmax(190px, 0fr)); grid-gap: 10px; width: 85%; overflow-x:hidden;  padding: 0 45px; perspective: 30000px;`}
+  @media ${breakPoints.phone} {
+    grid-template-columns: repeat(auto-fit, minmax(190px, 0fr)); 
+    grid-gap: 10px; 
+    padding: 0; 
+    perspective: 30000px;
+  }
 `
 
 const Image = styled.div`
