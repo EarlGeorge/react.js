@@ -1,11 +1,8 @@
 # React.js
-![Generic badge](https://badgen.net/badge/SPA/React.js/blue) ![Generic badge](https://badgen.net/badge/state-management/Redux/purple) ![Generic badge](https://badgen.net/badge/style/styled-components/orange) 
-![Generic badge](https://badgen.net/badge/reusable-code/100/blue) ![Generic badge](https://badgen.net/badge/spaghetti-code/maybe/) ![Generic badge](https://badgen.net/badge/Paradigm/functional-programming/)
-![Generic badge](https://badgen.net/badge/V/2.0/)
 
-### You can see the full features on [Live Demo](https://reactjsapp-7dab3.web.app)
+### Main page displays random images. Sign in for searching certain one, also supports voice input.
 
-main page displays random images. Sign in for searching certain one, also supports voice input.
+See full features on [Live Demo](https://reactjsapp-7dab3.web.app)
 
 ```
 U can use this account, or make your own.
@@ -13,17 +10,6 @@ email: george@georgee.co.uk
 password: admin1234
 ```
 ---
-## Getting started:
-
-### Setup
-
-```
-1. Clone the repository.
-```
-
-```
-2. Install dependencies.
-```
 
 # Technologies:
 | **Tech** | **Description** |**Using** |
