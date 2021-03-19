@@ -47,20 +47,10 @@ const Header = styled.header`
 
     .logo {
         position: relative;
-        top: 7px;
-        width: 60px;
-        animation: logo-spin infinite 10s linear;
+        top: 9px;
+        width: 40px;
     }
 
-    @keyframes logo-spin {
-        from {
-            transform: rotate(0deg);
-        }
-        to {
-            transform: rotate(360deg);
-        }
-    }
-    
     /* initial NavBar */
     .initialNav {
         display: flex;

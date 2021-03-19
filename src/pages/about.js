@@ -18,17 +18,15 @@ const Info = styled.section`
 const AboutPage = () => {
 
     const auth = useSelector(state => state.firebase.auth)
-    if (!auth.uid) return <Redirect to='/auth' /> 
+    if (!auth.uid) return <Redirect to='/auth' />
 
     return (
         <Info>
             <p>
                 react.js with auth, unsplash images.
                 Use chrome browser to see all the features..
-                Supports voice interaction for search input. 
-                Currently not too much but some other functionality may be integrated... 
-                Check my github to see how everything is organized behind the scenes <span>: ) </span>
-                also don't forget to Follow me & Star the repo, thanks. 
+                Supports voice interaction for search input.
+                Currently not too much but some other functionality may be integrated...
             </p>
         </Info>
     )

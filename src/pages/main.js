@@ -4,7 +4,7 @@ import styled, { keyframes } from 'styled-components'
 import { breakPoints } from '../components/MediaType'
 import { useSelector } from 'react-redux'
 
-// this page is without components.. : )) only @media MediaType 
+// this page is without components.. :)))
 
 const page = keyframes`
    0% { 
@@ -18,17 +18,16 @@ const Gallery = styled.section`
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 0 100px;
   display: grid;
   grid-gap: 70px;
+  overflow: hidden;
   grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
   align-content: center;
   justify-content: center;
   perspective: 3000px;
-  border-bottom-left-radius: 50px;
-  border-bottom-right-radius: 250px;
   background:linear-gradient(145deg, rgba(79, 97, 120,0.7) 70%, #ffffff 100%);
   box-shadow:120px 100px 250px #d9e7ff inset;
+
   /* Phone device */
   @media ${breakPoints.phone} {
     grid-template-columns: repeat(auto-fit, minmax(190px, 0fr)); 
@@ -39,6 +38,8 @@ const Gallery = styled.section`
 `
 
 const Image = styled.div`
+  padding: 0 100px;
+  margin: 0 100px;
   animation-name: ${page};
   animation-duration: 3s;
   animation-timing-function: cubic-bezier(.38,.38,.74,.84);
@@ -46,6 +47,12 @@ const Image = styled.div`
   animation-iteration-count: none;
   animation-direction: forwards;
   padding: 25px 0;
+  
+  /* Phone device */
+  @media ${breakPoints.phone} {
+    margin: 20px;
+    padding: 0; 
+  }
 `
 
 const MainPage = () => {

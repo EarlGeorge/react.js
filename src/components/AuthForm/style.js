@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import svg from '../../images/icons.svg'
 
 const AuthForm = styled.div`
 
@@ -332,7 +333,7 @@ const AuthForm = styled.div`
 			left: 0;
 			width: 100%;
 			height: 100%;
-			background-image: url("../../images/icons.svg"), none;
+			background-image: url(${svg}), none;
 			content: "";
 			-webkit-transition: all 0.7s;
 			transition: all 0.7s;

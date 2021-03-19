@@ -1,6 +1,7 @@
 {
   "name": "reactjs-app",
   "version": "1.0.0",
+  "author": "გიორგი დავითური",
   "private": true,
   "dependencies": {
     "axios": "^0.21.1",
@@ -43,20 +44,10 @@
     "prop-types": "^15.7.2",
     "redux-logger": "^3.0.6"
   },
-  "description": "![Generic badge](https://badgen.net/badge/SPA/React.js/blue) ![Generic badge](https://badgen.net/badge/state-management/Redux/purple) ![Generic badge](https://badgen.net/badge/style/styled-components/orange) \r ![Generic badge](https://badgen.net/badge/reusable-code/100/blue) ![Generic badge](https://badgen.net/badge/spaghetti-code/maybe/) ![Generic badge](https://badgen.net/badge/Paradigm/functional-programming/)\r ![Generic badge](https://badgen.net/badge/V/2.0/)",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/EarlGeorge/react.js.git"
-  },
   "keywords": [
     "unsplash",
     "voice",
     "input",
     "ui/ux"
-  ],
-  "author": "george davituri",
-  "bugs": {
-    "url": "https://github.com/EarlGeorge/react.js/issues"
-  },
-  "homepage": "https://github.com/EarlGeorge/react.js#readme"
+  ]
 }

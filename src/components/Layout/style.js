@@ -25,10 +25,6 @@ const GlobalStyle = createGlobalStyle`
         overflow-x: hidden;
         overflow-y: auto;
         font-family: 'Montserrat', sans-serif;
-        
-        // -ms-overflow-style: scrollbar;
-        // -webkit-text-size-adjust: 100%;
-        // -ms-text-size-adjust: 100%;
     }
 
     div:nth-child(2)  {
@@ -51,43 +47,6 @@ const GlobalStyle = createGlobalStyle`
         transition: all 2.5s;
         transform: scale(0.8);
     }
-
-/* 
-    .container {
-        width: 100%;
-        height: 100%;
-        position: relative;
-        padding-right: 0;
-        padding-left: 0;
-        margin-right: auto;
-        margin-left: auto;
-    }
-
-    @media (min-width: 576px) {
-        .container {
-            max-width: 540px;
-        }
-    }
-
-    @media (min-width: 768px) {
-        .container {
-            max-width: 720px;
-        }
-    }
-
-    @media (min-width: 992px) {
-        .container {
-            max-width: 960px;
-        }
-    }
-
-    @media (min-width: 1200px) {
-        .container {
-            max-width: 1140px;
-        }
-    } 
-*/
-
 `
 
-export {GlobalStyle}
+export { GlobalStyle }

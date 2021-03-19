@@ -25,6 +25,6 @@ function App() {
   )
 }
 
-console.info("%c hey, how is it going?", "color: red; font-family: sans-serif; font-size: 2em; text-shadow: #000 3px 3px;")
+console.info("%c hey, how is it going?", "color: red; font-family: sans-serif; font-size: 2em")
 
 export default App
